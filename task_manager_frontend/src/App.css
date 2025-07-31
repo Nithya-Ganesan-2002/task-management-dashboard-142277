@@ -21,6 +21,323 @@
   --button-text: #ffffff;
 }
 
+/* Core App Wrapper: */
+.tm-root {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-family: system-ui, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s, color 0.3s;
+  height: 100vh;
+}
+
+/* Header */
+.tm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  min-height: 60px;
+}
+.tm-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+.tm-user-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.tm-username {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.tm-logout-btn {
+  background: var(--button-bg);
+  color: var(--button-text);
+}
+
+/* Sidebar */
+.tm-main-layout {
+  display: flex;
+  flex: 1 1 0;
+  min-height: 0;
+}
+.tm-sidebar {
+  width: 170px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  min-height: 0;
+  padding-top: 10px;
+  flex-shrink: 0;
+}
+.tm-sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tm-sidebar li {
+  padding: 14px 18px;
+  margin: 4px 0;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-primary);
+  border-radius: 8px;
+  transition: background 0.17s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tm-sidebar li.tm-active,
+.tm-sidebar li:hover {
+  background: var(--border-color);
+}
+
+/* Main content */
+.tm-main-content {
+  flex: 1 1 0;
+  padding: 30px max(5vw,24px);
+  min-width: 0;
+  height: 100%;
+}
+
+/* Tasks List */
+.tm-task-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tm-task-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  padding: 15px 18px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: box-shadow 0.15s;
+  box-shadow: 0 0.5px 1px rgba(0,0,0,0.02);
+}
+.tm-task-complete .tm-task-desc {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+.tm-task-desc {
+  font-size: 1.08rem;
+  margin-left: 10px;
+}
+.tm-task-actions {
+  display: flex;
+  gap: 9px;
+}
+.tm-tasks-empty,
+.tm-tasks-loading {
+  margin-top: 40px;
+  color: var(--text-secondary);
+}
+
+/* Floating Action Button (FAB) */
+.tm-fab {
+  position: fixed;
+  bottom: 40px;
+  right: 42px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 50%;
+  font-size: 2.2rem;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.09);
+  cursor: pointer;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  outline: none;
+  transition: background 0.18s, box-shadow 0.15s;
+}
+.tm-fab:hover {
+  background: #0056b3;
+  box-shadow: 0 4px 20px 0 rgba(0,0,0,0.12);
+}
+
+/* Modal */
+.tm-modal-overlay {
+  position: fixed;
+  z-index: 3000;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(40,44,52,.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tm-modal {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 35px 30px 28px 30px;
+  min-width: 320px;
+  min-height: 120px;
+  box-shadow: 0 5px 42px 1px #191a1c29;
+  max-width: 94vw;
+}
+.tm-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 1.5rem;
+  justify-content: flex-end;
+}
+.tm-input {
+  display: block;
+  width: 100%;
+  margin: 14px 0;
+  padding: 12px;
+  border-radius: 7px;
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  outline: none;
+}
+.tm-input:focus {
+  box-shadow: 0 1px 8px 0 rgba(93,188,252,0.08);
+}
+
+/* Auth Forms */
+.tm-auth-page {
+  max-width: 325px;
+  margin: 64px auto;
+  padding: 26px 20px 34px 20px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 3px 34px 2px #100c0c16;
+}
+.tm-auth-form {
+  display: flex;
+  flex-direction: column;
+}
+.tm-auth-form h2 {
+  margin: 0;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  font-size: 1.33rem;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+.tm-auth-form button.btn,
+.tm-auth-form .btn {
+  width: 100%;
+  margin-top: 10px;
+}
+.tm-auth-error {
+  color: #cc3047;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Utility, Buttons */
+.btn {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 7px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0;
+  transition: background 0.18s;
+}
+.btn:active,
+.btn:focus {
+  outline: 2px solid #1976d299;
+}
+.btn:hover {
+  background: #0056b3;
+}
+.btn.btn-secondary {
+  background: var(--border-color);
+  color: var(--text-primary);
+}
+.btn.btn-small {
+  padding: 5px 10px;
+  font-size: .92rem;
+}
+.btn-link {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: .98rem;
+  margin-left: 0.4em;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 17px;
+  right: 32px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 9px 21px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+  z-index: 3010;
+  transition: all 0.3s;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.16);
+  opacity: 0.93;
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tm-main-layout {
+    flex-direction: column;
+  }
+  .tm-sidebar {
+    width: 100vw;
+    min-width: unset;
+    display: flex;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-top: 0;
+  }
+  .tm-sidebar ul {
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+  }
+  .tm-main-content {
+    padding: 20px 3vw;
+  }
+  .tm-fab {
+    right: 20px;
+    bottom: 22px;
+  }
+}
+
 .App {
   text-align: center;
   background-color: var(--bg-primary);
